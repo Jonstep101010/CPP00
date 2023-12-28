@@ -2,3 +2,10 @@ build/
 .cache
 cmake
 .clang-tidy
+.DS_Store
+
+ex01/.clang-format
+
+ex01/phone
+
+.clang-format
