@@ -9,12 +9,11 @@ class PhoneBook {
 private:
 	Contact contact[MAX_CONTACTS];
 	int num_contacts;
-	// int index;
 
 public:
 	PhoneBook();
 	~PhoneBook();
-	void Add_Contact();
+	void Add();
 	void Search();
 };
 

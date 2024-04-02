@@ -15,11 +15,9 @@ public:
 	Contact();
 	~Contact();
     void add_index(int index);
-    std::string get_data();
-    std::string get_first_name();
+    // std::string get_data();
 	void Init();
 	void Display();
-	/*...*/
 };
 
 #endif
