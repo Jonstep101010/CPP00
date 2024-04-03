@@ -1,7 +1,7 @@
+TARGET = megaphone
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror
-TARGET = megaphone
 
 all: $(TARGET)
 
@@ -10,5 +10,7 @@ $(TARGET): megaphone.cpp
 
 clean:
 	rm -f $(TARGET)
+
+fclean: clean
 
 re: clean all

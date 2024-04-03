@@ -7,11 +7,11 @@
 //                                                                            //
 // ************************************************************************** //
 
+//NOLINTBEGIN
 #include <vector>
 #include <algorithm>
 #include <functional>
-#include "Account.hpp"
-
+#include "Account.hpp" 
 
 int		main( void ) {
 
@@ -62,7 +62,7 @@ int		main( void ) {
 
 	return 0;
 }
-
+//NOLINTEND
 
 // ************************************************************************** //
 // vim: set ts=4 sw=4 tw=80 noexpandtab:                                      //
