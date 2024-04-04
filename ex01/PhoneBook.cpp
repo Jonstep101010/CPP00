@@ -1,10 +1,16 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 #include <cstdlib>
+#include <iomanip>
 #include <iostream>
 #include <string>
 
-PhoneBook::PhoneBook() { num_contacts = 0; }
+PhoneBook::PhoneBook()
+	: num_contacts(0) {
+	for (int i = 0; i < MAX_CONTACTS; i++) {
+		contact[i].add_index(i);
+	}
+}
 
 PhoneBook::~PhoneBook() { }
 
@@ -21,22 +27,32 @@ void PhoneBook::Add() {
 	num_contacts++;
 }
 
+void PhoneBook::List() {
+	std::cout << std::setw(5) << std::right << "index"
+			  << "|" << std::setw(5) << std::right
+			  << "first name"
+			  << "|" << std::setw(10) << std::right
+			  << "last name"
+			  << "|" << std::setw(12) << std::right
+			  << "phone number\n";
+	for (int i = 0; i < MAX_CONTACTS; i++) {
+		contact[i].RowDisplay();
+	}
+}
+
 void PhoneBook::Search() {
-	if (num_contacts > 0) {
-		std::cout << "Provide the search index:\n";
+	std::cout << "Provide the search index: ";
+	while (true) {
 		std::string field;
 		std::cin >> field;
 		int search_index = atoi(field.c_str());
 
-		if (search_index >= 0 && search_index <= num_contacts) {
-			std::cout << "Table for index " + field + "\n";
+		if (search_index < 0 || search_index >= MAX_CONTACTS) {
+			std::cout << "The range is from 0 to 7. Retry:\n";
+		} else {
+			std::cout << "Table for index " + field + ":\n";
 			contact[search_index].Display();
+			return;
 		}
-		else {
-			std::cout << "The range is from 0 to 7\n";
-		}
-	}
-	else {
-		std::cout << "Phonebook is empty!\n";
 	}
 }

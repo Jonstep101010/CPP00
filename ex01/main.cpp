@@ -1,22 +1,29 @@
 #include "PhoneBook.hpp"
 #include <iostream>
+#include <limits>
 
 void	loop(PhoneBook my_phonebook)
 {
 	std::string cmd;
 
-	while (1)
+	while (true)
 	{
 		std::cout << "Enter your command:\n";
-		std::cin >> cmd;
-		if (cmd == "EXIT")
-			return ;
-		if (cmd == "ADD")
+		std::getline(std::cin, cmd);
+		if (cmd == "EXIT") {
+			return;
+		}
+		if (cmd == "ADD") {
 			my_phonebook.Add();
-		else if (cmd == "SEARCH")
+		} else if (cmd == "SEARCH") {
+			my_phonebook.List();
 			my_phonebook.Search();
-		else
-            std::cout << "Invalid command.\n";
+			std::cin.ignore(
+				std::numeric_limits<std::streamsize>::max(),
+				'\n');
+		} else {
+			std::cout << "Invalid command.\n";
+		}
 	}
 }
 

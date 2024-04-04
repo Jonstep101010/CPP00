@@ -14,10 +14,10 @@ private:
 public:
 	Contact();
 	~Contact();
-    void add_index(int index);
-    // std::string get_data();
+	void add_index(int index);
 	void Init();
 	void Display();
+	void RowDisplay();
 };
 
 #endif
