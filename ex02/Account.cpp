@@ -29,12 +29,12 @@ Account::~Account() {
 #define YYYYMMDD_HHMMSS 17
 
 void Account::_displayTimestamp() {
-	char	timestamp[YYYYMMDD_HHMMSS];
-	time_t	epoch = time(0);
-	tm		*now = localtime(&epoch);
-	strftime(static_cast<char *>(timestamp), sizeof(timestamp),
+	char   timestamp[YYYYMMDD_HHMMSS];
+	time_t epoch = time(0);
+	tm*    now   = localtime(&epoch);
+	strftime(static_cast<char*>(timestamp), sizeof(timestamp),
 			 "%Y%m%d_%H%M%S", now);
-	std::cout << "[" << static_cast<char *>(timestamp) << "] ";
+	std::cout << "[" << static_cast<char*>(timestamp) << "] ";
 }
 
 int Account::getTotalAmount() { return (_totalAmount); }
@@ -75,9 +75,12 @@ bool Account::makeWithdrawal(int withdrawal) {
 	}
 	_amount -= withdrawal;
 	_totalAmount -= withdrawal;
-	std::cout << "index:" << _accountIndex << ";p_amount:" << p_amount
-			  << ";withdrawal:" << withdrawal << ";amount:" << checkAmount()
-			  << ";nb_withdrawals:" << (++_nbWithdrawals) << std::endl;
+	std::cout << "index:" << _accountIndex
+			  << ";p_amount:" << p_amount
+			  << ";withdrawal:" << withdrawal
+			  << ";amount:" << checkAmount()
+			  << ";nb_withdrawals:" << (++_nbWithdrawals)
+			  << std::endl;
 	_totalNbWithdrawals++;
 	return true;
 }
