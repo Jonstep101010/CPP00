@@ -1,14 +1,12 @@
 #include "Contact.hpp"
-#include "PhoneBook.hpp"
 #include <iomanip>
 #include <iostream>
-#include <sstream>
 #include <string>
 
 Contact::Contact()
-	: index(-1){};
+	: index(-1) {}
 
-Contact::~Contact(){};
+Contact::~Contact() {}
 
 static bool validate_input(const std::string& item,
 						   const std::string& input) {
@@ -19,7 +17,7 @@ static bool validate_input(const std::string& item,
 	if (item == "number") {
 		for (size_t i = 0; i < input.length(); i++) {
 			if (isdigit(input[i]) == 0) {
-				std::cout << "INvalid: Input must be numeric!\n";
+				std::cout << "Invalid: Input must be numeric!\n";
 				return false;
 			}
 		}
@@ -31,7 +29,7 @@ void Contact::add_item(const std::string& item,
 					   std::string&       dest) {
 	std::string input;
 	std::cout << "Please provide your " << item << ":\n";
-	while (true && !std::cin.eof()) {
+	while (!std::cin.eof()) {
 		std::cin >> input;
 		if (validate_input(item, input)) {
 			dest = input;
@@ -56,21 +54,18 @@ void Contact::Init() {
 
 std::string trunc_dot(const std::string& str) {
 	if (str.length() > COLUMN_MAXLEN) {
-		return (str.substr(0, 9) + ".");
+		return (str.substr(0, COLUMN_MAXLEN - 1) + ".");
 	}
 	return (str);
 }
 
 // gets formatted input of type Contact
 void Contact::RowDisplay() {
-	std::stringstream idx_ss;
-	idx_ss << this->index;
-	std::cout << std::setw(5) << std::right << idx_ss.str()
-			  << "|" << std::setw(10) << std::right
-			  << trunc_dot(first_name) << "|" << std::setw(10)
-			  << std::right << trunc_dot(last_name) << "|"
-			  << std::setw(12) << std::right
-			  << trunc_dot(phone_number) << "\n";
+	std::cout << std::setw(10) << std::right << this->index
+			  << "|" << std::setw(10) << trunc_dot(first_name)
+			  << "|" << std::setw(10) << trunc_dot(last_name)
+			  << "|" << std::setw(10) << trunc_dot(nickname)
+			  << std::endl;
 }
 
 void Contact::Display() {

@@ -6,7 +6,7 @@
 #include <string>
 
 PhoneBook::PhoneBook()
-	: num_contacts(0) {
+	: num_contacts(0), contact_index(0) {
 	for (int i = 0; i < MAX_CONTACTS; i++) {
 		contact[i].add_index(i);
 	}
@@ -15,27 +15,28 @@ PhoneBook::PhoneBook()
 PhoneBook::~PhoneBook() {}
 
 void PhoneBook::Add() {
-	if (num_contacts == MAX_CONTACTS) {
-		std::cout
-			<< "Adding new contact (replacing index 0)...\n";
-		contact[0].Init();
-		contact[0].add_index(0);
-		return;
-	}
 	std::cout << "Adding new contact...\n";
-	contact[num_contacts].Init();
-	contact[num_contacts].add_index(num_contacts);
-	num_contacts++;
+	if (num_contacts == MAX_CONTACTS) {
+		std::cout << "Replacing oldest contact...\n";
+		contact_index = 0;
+	}
+	contact[contact_index].Init();
+	contact[contact_index].add_index(contact_index);
+	if (num_contacts >= MAX_CONTACTS) {
+		contact_index = 0;
+		num_contacts  = MAX_CONTACTS;
+	} else {
+		contact_index = num_contacts;
+		num_contacts++;
+	}
+	contact_index++;
 }
 
 void PhoneBook::List() {
-	std::cout << std::setw(5) << std::right << "index"
-			  << "|" << std::setw(5) << std::right
-			  << "first name"
-			  << "|" << std::setw(10) << std::right
-			  << "last name"
-			  << "|" << std::setw(12) << std::right
-			  << "phone number\n";
+	std::cout << std::setw(10) << std::right << "index"
+			  << "|" << std::setw(10) << "first name"
+			  << "|" << std::setw(10) << "last name"
+			  << "|" << std::setw(10) << "nickname" << std::endl;
 	for (int i = 0; i < MAX_CONTACTS; i++) {
 		contact[i].RowDisplay();
 	}
