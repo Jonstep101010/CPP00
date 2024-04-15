@@ -16,16 +16,13 @@ PhoneBook::~PhoneBook() {}
 
 void PhoneBook::Add() {
 	std::cout << "Adding new contact...\n";
-	if (num_contacts == MAX_CONTACTS) {
-		std::cout << "Replacing oldest contact...\n";
+	if (contact_index >= MAX_CONTACTS) {
 		contact_index = 0;
+		num_contacts  = MAX_CONTACTS;
 	}
 	contact[contact_index].Init();
 	contact[contact_index].add_index(contact_index);
-	if (num_contacts >= MAX_CONTACTS) {
-		contact_index = 0;
-		num_contacts  = MAX_CONTACTS;
-	} else {
+	if (num_contacts < MAX_CONTACTS) {
 		contact_index = num_contacts;
 		num_contacts++;
 	}
