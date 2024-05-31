@@ -1,12 +1,12 @@
 TARGET = megaphone
 
-CC = c++
-CFLAGS = -Wall -Wextra -Werror
+CXX = c++
+CCXXFLAGS = -Wall -Wextra -Werror
 
 all: $(TARGET)
 
 $(TARGET): megaphone.cpp
-	$(CC) $(CFLAGS) -o $(TARGET) megaphone.cpp
+	$(CXX) $(CCXXFLAGS) -o $(TARGET) megaphone.cpp
 
 clean:
 	rm -f $(TARGET)
